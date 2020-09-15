@@ -1,10 +1,19 @@
 const express = require('express');
+const bodyparser = require('body-parser');
+
 let app = express();
 
+
 app.use(express.static(__dirname + '/../client/dist'));
-
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: true }));
 app.post('/repos', function (req, res) {
-
+  console.log('received request')
+  debugger;
+  if(!req.body) {
+    throw req.body
+  }
+  console.log(req.body)
   res.sendStatus(201);
 
   // TODO - your code here!
