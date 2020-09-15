@@ -6,20 +6,37 @@ let repoSchema = mongoose.Schema({
   forks: Number,
   url: String,
   repoId: Number,
+  name: String,
   username: String,
   stargazers: Number
 });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (data) => {
+let save = (username, data) => {
+
+  for(var i = 0; i < data.length; i ++) {
+  //query to check if the id is already in database
+  var currentRepo = data[i];
+    Repo.create({
+      forks: currentRepo.forks_count,
+      url: currentRepo.html_url,
+      repoId: currentRepo.id,
+      username: username,
+      stargazers: currentRepo.stargazers_count
+    })
+  }
+}
+
+  // data.forEach((repo) =>
+  // var testRepo = new Repo({repoId: data});
+  // console.log(testRepo.repoId);
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  console.log(data[0].id)
   // data.map((repo) => {
 
   // }
-}
+
 
 module.exports.save = save;

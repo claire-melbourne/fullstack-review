@@ -16,8 +16,7 @@ let getReposByUsername = (username, callback) => {
       if(!results){
         throw (results);
       }
-      console.log(results.data[0].id)
-      callback(results.data[0]);
+      callback(username, results.data);
     })
 }
 

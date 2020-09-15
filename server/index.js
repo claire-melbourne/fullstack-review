@@ -14,20 +14,11 @@ app.post('/repos', function (req, res) {
   if(!req.body) {
     throw req.body
   }
-  //getReposByUsername(username)
-    //.then
-    //if error throw error
-    //otherwise use modeule.exports save to insert results into database  -- db.save
-  // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
-  console.log(req.body, "<---request body");
-  gitHub.getReposByUsername(username, (results) => {
+  gitHub.getReposByUsername(username, (username, results) => {
     // if (err) {
     //   res.sendStatus(404);
     // }
-    console.log(results, '<these are result');
+    db.save(username, results)
     res.sendStatus(201);
   })
 });
