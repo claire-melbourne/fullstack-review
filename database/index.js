@@ -36,15 +36,20 @@ let save = (username, data) => {
   }
 }
 
-  // data.forEach((repo) =>
-  // var testRepo = new Repo({repoId: data});
-  // console.log(testRepo.repoId);
-  // TODO: Your code here
-  // This function should save a repo or repos to
-  // the MongoDB
-  // data.map((repo) => {
+// var test = Repo.find().sort({ "forks" : -1 }).then((result) => {
+//   console.log('first item in top 25', result[0])
+// })
+// console.log( test, '--------------------');
+let getTopRepos = () => {
+  Repo.find().sort({ "forks" : -1 }).limit(25).then((result) => {
 
-  // }
+    for(var i = 0; i < result.length; i ++) {
+      console.log('ITERATE ITEMS---------------------INDEX IS, ', i, result[i]._doc.stargazers)
+    }
+  })
+}
+
 
 
 module.exports.save = save;
+module.exports.getTopRepos = getTopRepos;
