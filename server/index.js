@@ -28,9 +28,6 @@ app.get('/repos', function(req, res, next) {
   db.getTopRepos((repos) => {
     res.send(repos);
   })
-
-    // res.status(200).send(repos)
-
 });
 
 let port = 1128;

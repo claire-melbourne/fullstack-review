@@ -18,7 +18,10 @@ class App extends React.Component {
       type: 'GET',
       url: 'http://127.0.0.1:1128/repos',
       success: (data) => {
-        console.log('data received: ', data)
+        this.setState({
+          repos: data
+        })
+        console.log(this.state.repos);
       }
     })
   }
