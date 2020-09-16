@@ -11,8 +11,7 @@ class App extends React.Component {
       repos: []
     }
   }
-  componentDidMount () {
-    console.log('functioning componentdidmount')
+  getRepos () {
     $.ajax({
       type: 'GET',
       url: 'http://127.0.0.1:1128/repos',
@@ -23,13 +22,36 @@ class App extends React.Component {
       }
     })
   }
+  componentDidMount () {
+    console.log('functioning componentdidmount')
+    this.getRepos();
+    // $.ajax({
+    //   type: 'GET',
+    //   url: 'http://127.0.0.1:1128/repos',
+    //   success: (data) => {
+    //     this.setState({
+    //       repos: data
+    //     })
+    //   }
+    // })
+  }
+
   search (username) {
   console.log(`${username} was searched`);
   $.ajax({
     type: 'POST',
     url: 'http://127.0.0.1:1128/repos',
     data: {"username": username},
-    success: console.log('success')
+    success: $.ajax({
+      type: 'GET',
+      url: 'http://127.0.0.1:1128/repos',
+      success: (data) => {
+        this.setState({
+          repos: data
+        })
+      }
+    })
+    //updating on second search without refresh but not on first
   })
 }
   render () {
