@@ -42,11 +42,15 @@ let save = (username, data) => {
 // console.log( test, '--------------------');
 let getTopRepos = () => {
   Repo.find().sort({ "forks" : -1 }).limit(25).then((result) => {
-
+    var reposArray = []
     for(var i = 0; i < result.length; i ++) {
-      console.log('ITERATE ITEMS---------------------INDEX IS, ', i, result[i]._doc.stargazers)
+      // var currentRepo = [result[i]._doc.name, result[i]._doc.url, result[i]._doc.username];
+      reposArray.push(result[i]._doc);
+      console.log('ITERATE ITEMS try again---------------------INDEX IS, ', i, result[i]._doc)
     }
+    console.log('fulll arraay!!-------', reposArray);
   })
+
 }
 
 
