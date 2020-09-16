@@ -6,9 +6,8 @@ var RepoList = (props) => (
     There are {props.repos.length} repos.
     <ul>
       {props.repos.map((repo, index) =>
-      <li>REPO: {repo.name}
+      <li><a href= {"" + repo.url}>{repo.name}</a>
         <ul>
-          <li>link: {repo.url}</li>
           <li>by {repo.username}</li>
         </ul>
       </li>
