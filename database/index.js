@@ -40,15 +40,15 @@ let save = (username, data) => {
 //   console.log('first item in top 25', result[0])
 // })
 // console.log( test, '--------------------');
-let getTopRepos = () => {
+let getTopRepos = (callback) => {
   Repo.find().sort({ "forks" : -1 }).limit(25).then((result) => {
     var reposArray = []
     for(var i = 0; i < result.length; i ++) {
       // var currentRepo = [result[i]._doc.name, result[i]._doc.url, result[i]._doc.username];
       reposArray.push(result[i]._doc);
-      console.log('ITERATE ITEMS try again---------------------INDEX IS, ', i, result[i]._doc)
     }
-    console.log('fulll arraay!!-------', reposArray);
+    //console.log('fulll arraay!!-------', reposArray);
+    callback(reposArray)
   })
 
 }

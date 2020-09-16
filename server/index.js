@@ -23,10 +23,14 @@ app.post('/repos', function (req, res) {
   })
 });
 
-app.get('/repos', function (req, res) {
+app.get('/repos', function(req, res, next) {
 //query database
-  db.getTopRepos();
-  res.end('25 repos');
+  db.getTopRepos((repos) => {
+    res.send(repos);
+  })
+
+    // res.status(200).send(repos)
+
 });
 
 let port = 1128;
