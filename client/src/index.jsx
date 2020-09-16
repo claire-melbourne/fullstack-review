@@ -10,7 +10,6 @@ class App extends React.Component {
     this.state = {
       repos: []
     }
-
   }
   componentDidMount () {
     console.log('functioning componentdidmount')
@@ -21,7 +20,6 @@ class App extends React.Component {
         this.setState({
           repos: data
         })
-        console.log(this.state.repos);
       }
     })
   }
@@ -34,8 +32,6 @@ class App extends React.Component {
     success: console.log('success')
   })
 }
-
-
   render () {
     return (<div>
       <h1>Github Fetcher</h1>
